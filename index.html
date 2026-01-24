@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Wedding RSVP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <div class="hero__overlay"></div>
+        <div class="hero__content">
+          <p class="eyebrow">You're invited</p>
+          <h1>Alex &amp; Jordan</h1>
+          <p class="subtitle">Saturday, June 14, 2026 · Rosewood Estate · Napa, CA</p>
+          <div class="hero__actions">
+            <button class="btn btn--primary" data-scroll="#rsvp">RSVP</button>
+            <button class="btn btn--ghost" data-scroll="#details">View details</button>
+          </div>
+        </div>
+        <div class="hero__ornament"></div>
+      </header>
+
+      <main>
+        <section class="section" id="details">
+          <div class="section__title">
+            <h2>Celebrate with us</h2>
+            <p>Join us for a warm, candlelit evening of dinner, dancing, and too much cake.</p>
+          </div>
+          <div class="card-grid">
+            <article class="card">
+              <h3>Schedule</h3>
+              <ul>
+                <li>Ceremony · 4:30 PM</li>
+                <li>Cocktails · 5:30 PM</li>
+                <li>Reception · 6:30 PM</li>
+                <li>Afterglow · 10:30 PM</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3>Venue</h3>
+              <p>Rosewood Estate</p>
+              <p>124 Vineyard Lane, Napa, CA</p>
+              <p>On-site parking and valet available.</p>
+            </article>
+            <article class="card">
+              <h3>Dress code</h3>
+              <p>Garden formal.</p>
+              <p>Think elegant with a touch of whimsy.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section section--alt" id="rsvp">
+          <div class="section__title">
+            <h2>RSVP</h2>
+            <p>Kindly respond by May 1, 2026.</p>
+          </div>
+          <form class="rsvp" id="rsvpForm">
+            <div class="rsvp__row">
+              <label>
+                Full name
+                <input type="text" name="name" placeholder="Your name" required />
+              </label>
+              <label>
+                Email
+                <input type="email" name="email" placeholder="you@example.com" required />
+              </label>
+            </div>
+            <div class="rsvp__row">
+              <label>
+                Attendance
+                <select name="attendance" required>
+                  <option value="">Select one</option>
+                  <option>Joyfully accepts</option>
+                  <option>Regretfully declines</option>
+                </select>
+              </label>
+              <label>
+                Guests
+                <select name="guests">
+                  <option>Just me</option>
+                  <option>+1</option>
+                  <option>+2</option>
+                </select>
+              </label>
+            </div>
+            <div class="rsvp__row">
+              <label>
+                Meal preference
+                <select name="meal">
+                  <option>Beef</option>
+                  <option>Chicken</option>
+                  <option>Vegetarian</option>
+                  <option>Vegan</option>
+                </select>
+              </label>
+              <label>
+                Song request
+                <input type="text" name="song" placeholder="Tell us what to play" />
+              </label>
+            </div>
+            <label class="rsvp__full">
+              Notes or dietary needs
+              <textarea name="notes" rows="4" placeholder="Allergies, accessibility needs, notes"></textarea>
+            </label>
+            <button class="btn btn--primary" type="submit">Send RSVP</button>
+            <p class="rsvp__note" id="rsvpNote">This template stores responses in your browser console.</p>
+          </form>
+        </section>
+
+        <section class="section">
+          <div class="section__title">
+            <h2>We can't wait to celebrate</h2>
+            <p>Thank you for sharing our day. With love, Alex &amp; Jordan.</p>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>Questions? Email us at <span>hello@alexandjordan.com</span></p>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

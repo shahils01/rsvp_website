@@ -12,10 +12,24 @@ scrollButtons.forEach((button) => {
 const form = document.getElementById('rsvpForm');
 const note = document.getElementById('rsvpNote');
 
-form.addEventListener('submit', (event) => {
+const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbzgbSfpIMZaz3fcKd1oUm_WMupHDm5SfqG08yE9nuPx7GTDhu8nTlDDo51YU0lBQdNVSQ/exec";
+
+form.addEventListener("submit", async (event) => {
   event.preventDefault();
   const data = Object.fromEntries(new FormData(form));
-  console.log('RSVP submission', data);
-  note.textContent = "Thanks! Your response has been recorded in the browser console.";
-  form.reset();
+
+  try {
+    await fetch(RSVP_ENDPOINT, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(data),
+    });
+
+    note.textContent = "Thanks! Your RSVP has been submitted.";
+    form.reset();
+  } catch (err) {
+    note.textContent = "Submission failed. Please try again.";
+  }
 });
+

@@ -85,6 +85,10 @@ h1 {
   max-width: 420px;
 }
 
+.subtitle__break {
+  display: none;
+}
+
 .hero__actions {
   margin-top: 2rem;
   display: flex;
@@ -226,6 +230,10 @@ textarea {
 @media (max-width: 720px) {
   .hero {
     padding: 5rem 8vw 6rem;
+  }
+
+  .subtitle__break {
+    display: block;
   }
 
   .hero__ornament {

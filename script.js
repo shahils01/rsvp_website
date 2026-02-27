@@ -12,7 +12,7 @@ scrollButtons.forEach((button) => {
 const form = document.getElementById('rsvpForm');
 const note = document.getElementById('rsvpNote');
 
-const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbzgbSfpIMZaz3fcKd1oUm_WMupHDm5SfqG08yE9nuPx7GTDhu8nTlDDo51YU0lBQdNVSQ/exec";
+const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbzyYPQKUtLdBL0XGvS50_cJeeaPIt2E6VeyFEBreBWUN9o3dmWeSZTl8VJS4Szy2sPHDw/exec";
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();

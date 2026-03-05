@@ -14,10 +14,13 @@ const note = document.getElementById('rsvpNote');
 
 const RSVP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxF63V1OITf4qAvP-QzDcTFCDkTj-UmQENKOH5wU-g5kxppXC1j0zEQZ-54GND2LqhelQ/exec';
 
-if (form && note) {
+if (form) {
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const data = Object.fromEntries(new FormData(form));
+    if (note) {
+      note.textContent = 'Sending RSVP...';
+    }
 
     try {
       const response = await fetch(RSVP_ENDPOINT, {
@@ -30,16 +33,21 @@ if (form && note) {
         throw new Error(`HTTP ${response.status}`);
       }
 
-      const result = (await response.text()).trim().toLowerCase();
+      const rawResult = await response.text();
+      const result = rawResult.trim().toLowerCase();
       if (result !== 'ok') {
         throw new Error(`Unexpected response: ${result || 'empty'}`);
       }
 
-      note.textContent = 'Thanks! Your RSVP has been submitted.';
+      if (note) {
+        note.textContent = 'Thanks! Your RSVP has been submitted.';
+      }
       form.reset();
     } catch (err) {
       console.error('RSVP submission failed:', err);
-      note.textContent = 'Submission failed. Please check your Apps Script deployment and try again.';
+      if (note) {
+        note.textContent = 'Submission failed. Verify Apps Script is deployed as Web App with access set to Anyone.';
+      }
     }
   });
 }

@@ -74,17 +74,17 @@ function renderRegistryLinks() {
     `).join('');
 }
 
-// function initRegistryLinksOnly() {
-//   renderRegistryLinks();
+function initRegistryLinksOnly() {
+  renderRegistryLinks();
 
-//   if (registryGridEl) {
-//     registryGridEl.innerHTML = '';
-//     registryGridEl.style.display = 'none';
-//   }
+  if (registryGridEl) {
+    registryGridEl.innerHTML = '';
+    registryGridEl.style.display = 'none';
+  }
 
-//   // if (registryNoteEl) {
-//   //   registryNoteEl.textContent = 'Please use the Amazon and Wayfair registries above. Thank you for celebrating with us.';
-//   // }
-// }
+  if (registryNoteEl) {
+    registryNoteEl.textContent = 'Thank you for celebrating with us.';
+  }
+}
 
 initRegistryLinksOnly();

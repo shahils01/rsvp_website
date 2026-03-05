@@ -82,9 +82,9 @@ function initRegistryLinksOnly() {
     registryGridEl.style.display = 'none';
   }
 
-  if (registryNoteEl) {
-    registryNoteEl.textContent = 'Please use the Amazon and Wayfair registries above. Thank you for celebrating with us.';
-  }
+  // if (registryNoteEl) {
+  //   registryNoteEl.textContent = 'Please use the Amazon and Wayfair registries above. Thank you for celebrating with us.';
+  // }
 }
 
 initRegistryLinksOnly();

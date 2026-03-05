@@ -123,6 +123,13 @@ h1 {
   box-shadow: 0 16px 30px var(--shadow);
 }
 
+.btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
 .section {
   padding: 5rem 8vw;
 }
@@ -167,6 +174,114 @@ h1 {
   list-style: none;
   display: grid;
   gap: 0.5rem;
+}
+
+.registry-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 1.6rem;
+}
+
+.registry-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+.registry-grid {
+  display: grid;
+  gap: 1.2rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.registry-card {
+  background: var(--white);
+  border: 1px solid rgba(123, 31, 58, 0.12);
+  border-radius: 22px;
+  padding: 1.4rem;
+  box-shadow: 0 10px 24px var(--shadow);
+  display: grid;
+  gap: 0.9rem;
+}
+
+.registry-card h3 {
+  color: var(--burgundy-700);
+  line-height: 1.25;
+}
+
+.registry-card p {
+  font-size: 0.95rem;
+}
+
+.registry-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 1px solid rgba(123, 31, 58, 0.15);
+}
+
+.chip--store {
+  color: var(--burgundy-700);
+  background: #fff5f7;
+}
+
+.chip--available {
+  color: #174f24;
+  background: #eaf9ed;
+  border-color: #b6e7c1;
+}
+
+.chip--claimed {
+  color: #7a1b35;
+  background: #ffeef2;
+  border-color: #f5c8d5;
+}
+
+.registry-card__actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.btn--link {
+  background: transparent;
+  color: var(--burgundy-700);
+  border: 1px solid rgba(123, 31, 58, 0.2);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn--small {
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+}
+
+.registry-card__message {
+  font-size: 0.8rem;
+  color: rgba(63, 13, 28, 0.8);
+}
+
+.registry__note {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: rgba(63, 13, 28, 0.75);
+}
+
+.registry__note--error {
+  color: #8b112f;
 }
 
 .rsvp {

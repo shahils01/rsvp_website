@@ -45,78 +45,78 @@ if (form && note) {
 }
 
 const REGISTRY_WEBSITE_LINKS = [
-  { label: 'Amazon Registry', url: 'https://www.amazon.com/wedding/registry' },
-  { label: 'Other Gift Site', url: 'https://example.com/your-registry' },
+  { label: 'Amazon Registry', url: 'https://www.amazon.com/wedding/guest-view/2TMKQZYJ4WLQJ' },
+  { label: 'Wayfair', url: 'https://www.wayfair.com/lists/favorites/2260988781/shah3TGhxw' },
 ];
 
-const REGISTRY_ITEMS = [
-  {
-    id: 'gift-espresso-machine',
-    title: 'Espresso Machine',
-    store: 'Amazon',
-    description: 'For cozy morning coffee dates at home.',
-    url: 'https://www.amazon.com/',
-  },
-  {
-    id: 'gift-dinnerware-set',
-    title: 'Dinnerware Set',
-    store: 'Amazon',
-    description: 'A daily-use set we can use when hosting family and friends.',
-    url: 'https://www.amazon.com/',
-  },
-  {
-    id: 'gift-luggage-set',
-    title: 'Luggage Set',
-    store: 'Travel Store',
-    description: 'For honeymoon and future travel adventures.',
-    url: 'https://example.com/luggage',
-  },
-  {
-    id: 'gift-bedding-set',
-    title: 'Premium Bedding Set',
-    store: 'Home Store',
-    description: 'Soft neutral tones to match our bedroom.',
-    url: 'https://example.com/bedding',
-  },
-];
+// const REGISTRY_ITEMS = [
+//   {
+//     id: 'gift-espresso-machine',
+//     title: 'Espresso Machine',
+//     store: 'Amazon',
+//     description: 'For cozy morning coffee dates at home.',
+//     url: 'https://www.amazon.com/',
+//   },
+//   {
+//     id: 'gift-dinnerware-set',
+//     title: 'Dinnerware Set',
+//     store: 'Amazon',
+//     description: 'A daily-use set we can use when hosting family and friends.',
+//     url: 'https://www.amazon.com/',
+//   },
+//   {
+//     id: 'gift-luggage-set',
+//     title: 'Luggage Set',
+//     store: 'Travel Store',
+//     description: 'For honeymoon and future travel adventures.',
+//     url: 'https://example.com/luggage',
+//   },
+//   {
+//     id: 'gift-bedding-set',
+//     title: 'Premium Bedding Set',
+//     store: 'Home Store',
+//     description: 'Soft neutral tones to match our bedroom.',
+//     url: 'https://example.com/bedding',
+//   },
+// ];
 
 // Optional shared tracking endpoint.
 // Use your own Google Apps Script web app URL here so all guests see the same gift status.
-const REGISTRY_API_ENDPOINT = '';
-const REGISTRY_REFRESH_MS = 25000;
-const REGISTRY_LOCAL_STORAGE_KEY = 'wedding_registry_claims_v1';
-const REGISTRY_GUEST_TOKEN_KEY = 'wedding_registry_guest_token_v1';
+// const REGISTRY_API_ENDPOINT = '';
+// const REGISTRY_REFRESH_MS = 25000;
+// const REGISTRY_LOCAL_STORAGE_KEY = 'wedding_registry_claims_v1';
+// const REGISTRY_GUEST_TOKEN_KEY = 'wedding_registry_guest_token_v1';
 
-const registryLinksEl = document.getElementById('registryLinks');
-const registryGridEl = document.getElementById('registryGrid');
-const registryNoteEl = document.getElementById('registryNote');
+// const registryLinksEl = document.getElementById('registryLinks');
+// const registryGridEl = document.getElementById('registryGrid');
+// const registryNoteEl = document.getElementById('registryNote');
 
-const validGiftIds = new Set(REGISTRY_ITEMS.map((item) => item.id));
+// const validGiftIds = new Set(REGISTRY_ITEMS.map((item) => item.id));
 
-const registryState = {
-  claims: {},
-  busyGiftIds: new Set(),
-  guestToken: getGuestToken(),
-};
+// const registryState = {
+//   claims: {},
+//   busyGiftIds: new Set(),
+//   guestToken: getGuestToken(),
+// };
 
-function getGuestToken() {
-  try {
-    const existingToken = localStorage.getItem(REGISTRY_GUEST_TOKEN_KEY);
-    if (existingToken) {
-      return existingToken;
-    }
+// function getGuestToken() {
+//   try {
+//     const existingToken = localStorage.getItem(REGISTRY_GUEST_TOKEN_KEY);
+//     if (existingToken) {
+//       return existingToken;
+//     }
 
-    const newToken = typeof crypto !== 'undefined' && crypto.randomUUID
-      ? crypto.randomUUID()
-      : `guest-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+//     const newToken = typeof crypto !== 'undefined' && crypto.randomUUID
+//       ? crypto.randomUUID()
+//       : `guest-${Date.now()}-${Math.random().toString(16).slice(2)}`;
 
-    localStorage.setItem(REGISTRY_GUEST_TOKEN_KEY, newToken);
-    return newToken;
-  } catch (error) {
-    console.warn('Guest token persistence is unavailable:', error);
-    return `guest-session-${Date.now()}-${Math.random().toString(16).slice(2)}`;
-  }
-}
+//     localStorage.setItem(REGISTRY_GUEST_TOKEN_KEY, newToken);
+//     return newToken;
+//   } catch (error) {
+//     console.warn('Guest token persistence is unavailable:', error);
+//     return `guest-session-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+//   }
+// }
 
 function escapeHtml(value) {
   return String(value)

@@ -82,41 +82,41 @@ const REGISTRY_WEBSITE_LINKS = [
 
 // Optional shared tracking endpoint.
 // Use your own Google Apps Script web app URL here so all guests see the same gift status.
-// const REGISTRY_API_ENDPOINT = '';
-// const REGISTRY_REFRESH_MS = 25000;
-// const REGISTRY_LOCAL_STORAGE_KEY = 'wedding_registry_claims_v1';
-// const REGISTRY_GUEST_TOKEN_KEY = 'wedding_registry_guest_token_v1';
+const REGISTRY_API_ENDPOINT = '';
+const REGISTRY_REFRESH_MS = 25000;
+const REGISTRY_LOCAL_STORAGE_KEY = 'wedding_registry_claims_v1';
+const REGISTRY_GUEST_TOKEN_KEY = 'wedding_registry_guest_token_v1';
 
-// const registryLinksEl = document.getElementById('registryLinks');
-// const registryGridEl = document.getElementById('registryGrid');
-// const registryNoteEl = document.getElementById('registryNote');
+const registryLinksEl = document.getElementById('registryLinks');
+const registryGridEl = document.getElementById('registryGrid');
+const registryNoteEl = document.getElementById('registryNote');
 
-// const validGiftIds = new Set(REGISTRY_ITEMS.map((item) => item.id));
+const validGiftIds = new Set(REGISTRY_ITEMS.map((item) => item.id));
 
-// const registryState = {
-//   claims: {},
-//   busyGiftIds: new Set(),
-//   guestToken: getGuestToken(),
-// };
+const registryState = {
+  claims: {},
+  busyGiftIds: new Set(),
+  guestToken: getGuestToken(),
+};
 
-// function getGuestToken() {
-//   try {
-//     const existingToken = localStorage.getItem(REGISTRY_GUEST_TOKEN_KEY);
-//     if (existingToken) {
-//       return existingToken;
-//     }
+function getGuestToken() {
+  try {
+    const existingToken = localStorage.getItem(REGISTRY_GUEST_TOKEN_KEY);
+    if (existingToken) {
+      return existingToken;
+    }
 
-//     const newToken = typeof crypto !== 'undefined' && crypto.randomUUID
-//       ? crypto.randomUUID()
-//       : `guest-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+    const newToken = typeof crypto !== 'undefined' && crypto.randomUUID
+      ? crypto.randomUUID()
+      : `guest-${Date.now()}-${Math.random().toString(16).slice(2)}`;
 
-//     localStorage.setItem(REGISTRY_GUEST_TOKEN_KEY, newToken);
-//     return newToken;
-//   } catch (error) {
-//     console.warn('Guest token persistence is unavailable:', error);
-//     return `guest-session-${Date.now()}-${Math.random().toString(16).slice(2)}`;
-//   }
-// }
+    localStorage.setItem(REGISTRY_GUEST_TOKEN_KEY, newToken);
+    return newToken;
+  } catch (error) {
+    console.warn('Guest token persistence is unavailable:', error);
+    return `guest-session-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+  }
+}
 
 function escapeHtml(value) {
   return String(value)

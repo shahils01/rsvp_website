@@ -83,7 +83,7 @@ const REGISTRY_ITEMS = [
 
 // Optional shared tracking endpoint.
 // Use your own Google Apps Script web app URL here so all guests see the same gift status.
-const REGISTRY_API_ENDPOINT = '';
+const REGISTRY_API_ENDPOINT = RSVP_ENDPOINT;
 const REGISTRY_REFRESH_MS = 25000;
 const REGISTRY_LOCAL_STORAGE_KEY = 'wedding_registry_claims_v1';
 const REGISTRY_GUEST_TOKEN_KEY = 'wedding_registry_guest_token_v1';
@@ -98,6 +98,7 @@ const registryState = {
   claims: {},
   busyGiftIds: new Set(),
   guestToken: getGuestToken(),
+  remoteEnabled: false,
 };
 
 function getGuestToken() {
@@ -338,18 +339,11 @@ async function saveRemoteClaim(giftId, action) {
   return fetchRemoteClaims();
 }
 
-async function loadRegistryClaims() {
-  if (REGISTRY_API_ENDPOINT) {
-    return fetchRemoteClaims();
-  }
-  return readLocalClaims();
-}
-
 async function saveRegistryClaim(giftId, action) {
   if (!validGiftIds.has(giftId)) {
     throw new Error('Invalid gift id.');
   }
-  if (REGISTRY_API_ENDPOINT) {
+  if (registryState.remoteEnabled) {
     return saveRemoteClaim(giftId, action);
   }
   return applyLocalClaimAction(giftId, action);
@@ -388,9 +382,10 @@ async function initRegistry() {
   renderRegistryLinks();
   renderRegistryCards();
 
-  try {
-    registryState.claims = await loadRegistryClaims();
-    if (REGISTRY_API_ENDPOINT) {
+  if (REGISTRY_API_ENDPOINT) {
+    try {
+      registryState.claims = await fetchRemoteClaims();
+      registryState.remoteEnabled = true;
       setRegistryNote('Live anonymous gift tracking is active.');
       window.setInterval(async () => {
         try {
@@ -400,12 +395,19 @@ async function initRegistry() {
           console.error('Registry refresh failed:', error);
         }
       }, REGISTRY_REFRESH_MS);
-    } else {
-      setRegistryNote('Registry is in local preview mode. Add REGISTRY_API_ENDPOINT in script.js for shared tracking.');
+    } catch (error) {
+      console.error('Shared registry initialization failed:', error);
+      registryState.remoteEnabled = false;
+      registryState.claims = readLocalClaims();
+      setRegistryNote(
+        'Shared registry is not ready yet. Local preview mode is active until your Apps Script is updated.',
+        true
+      );
     }
-  } catch (error) {
-    console.error('Registry initialization failed:', error);
-    setRegistryNote('Could not load registry status. Please refresh and try again.', true);
+  } else {
+    registryState.claims = readLocalClaims();
+    registryState.remoteEnabled = false;
+    setRegistryNote('Registry is in local preview mode. Add REGISTRY_API_ENDPOINT in script.js for shared tracking.');
   }
 
   renderRegistryCards();

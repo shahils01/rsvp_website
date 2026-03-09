@@ -18,6 +18,10 @@ if (form) {
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const data = Object.fromEntries(new FormData(form));
+    // Backward compatibility for pages that still use the old field name.
+    if (!data.after_party_attendance && data.afterparty_attendance) {
+      data.after_party_attendance = data.afterparty_attendance;
+    }
     if (note) {
       note.textContent = 'Sending RSVP...';
     }
